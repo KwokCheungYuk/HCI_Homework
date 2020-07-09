@@ -23,13 +23,13 @@ def augmention():
         img_path_array = glob.glob(class_folder + "/*.jpg")
         for img_path in img_path_array:
             img = cv2.imread(img_path)
-            for i in range(30):
+            for j in range(30):
                 # 旋转
                 img_rotate = rotate(img)
                 # 水平翻转
                 img_flip = cv2.flip(img_rotate, 1)
-                rotate_save_path = img_path.split('.')[0] + '_rotate' + str(i) + '.' + img_path.split('.')[-1]
-                flip_save_path = img_path.split('.')[0] + '_flip' + str(i) + '.' + img_path.split('.')[-1]
+                rotate_save_path = img_path.split('.')[0] + '_rotate' + str(j) + '.' + img_path.split('.')[-1]
+                flip_save_path = img_path.split('.')[0] + '_flip' + str(j) + '.' + img_path.split('.')[-1]
                 cv2.imwrite(rotate_save_path, img_rotate)
                 cv2.imwrite(flip_save_path, img_flip)
 
