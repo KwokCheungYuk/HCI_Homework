@@ -53,6 +53,9 @@ def get_hand(img):
 
 
 if __name__ == '__main__':
+    print('Please enter image\'s path: ', end='')
     path = input()
     img = cv2.imread(path)
     hand_img = get_hand(img)
+    save_path = path.split('.')[0] + '_hand.' + path.split('.')[-1]
+    cv2.imwrite(save_path, hand_img)
