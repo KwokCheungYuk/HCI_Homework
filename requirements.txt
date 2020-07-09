@@ -3,3 +3,4 @@ pyqt5-tools
 tensorflow
 opencv-python
 numpy
+opencv-python
