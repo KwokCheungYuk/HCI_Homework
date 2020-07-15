@@ -8,6 +8,8 @@ import numpy as np
 import preprocessing
 import model
 import random
+import pygame
+import time
 
 
 GESTURE_LIST = ['布', '石头', '剪刀', '数字六', '数字三']
@@ -41,6 +43,11 @@ class myWindow(QWidget):
         self.cap.open(0)
         # 获取摄像头数据
         self.get_camera_data()
+
+        self.music_thread = MusicThread()
+        self.music_thread.start()
+        
+
 
     def initUI(self):
         self.create_realtime()
@@ -360,6 +367,23 @@ class myWindow(QWidget):
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
         self.move(qr.topLeft())
+
+# 音乐线程
+class MusicThread(QThread):  
+
+    def __init__(self):
+        super(MusicThread, self).__init__()
+        self.is_on = True
+
+    # 线程执行函数
+    def run(self):
+        filepath = 'data/bgm.mp3'
+        pygame.mixer.init()
+        # 加载音乐
+        pygame.mixer.music.load(filepath)
+        pygame.mixer.music.play(start=0.0)
+        time.sleep(300)
+        
 
 
 # 倒数线程，用于倒数拍照
